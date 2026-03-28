@@ -423,35 +423,7 @@
       50% { opacity: 0.3; }
     }
 
-    .tour-fullscreen-btn {
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      z-index: 3;
-      width: 44px;
-      height: 44px;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(201,169,110,0.3);
-      color: var(--gold);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-
-    .tour-fullscreen-btn svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .tour-fullscreen-btn:hover {
-      background: rgba(201,169,110,0.2);
-      border-color: var(--gold);
-    }
-
-    .tour-controls {
+.tour-controls {
       display: flex;
       justify-content: center;
       gap: 2rem;
@@ -770,21 +742,12 @@
           style="touch-action: none;"
         ></iframe>
       </div>
-      <button class="tour-fullscreen-btn" onclick="toggleTourFullscreen()" aria-label="Fullscreen">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-        </svg>
-      </button>
     </div>
 
     <div class="tour-controls reveal">
       <div class="tour-tip">
         <svg viewBox="0 0 24 24"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
         Klik & seret untuk memutar
-      </div>
-      <div class="tour-tip">
-        <svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-        Fullscreen tersedia
       </div>
       <div class="tour-tip">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
@@ -867,17 +830,6 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Fullscreen toggle for tour
-    function toggleTourFullscreen() {
-      const container = document.querySelector('.tour-container');
-      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        if (container.requestFullscreen) container.requestFullscreen();
-        else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
-      } else {
-        if (document.exitFullscreen) document.exitFullscreen();
-        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-      }
-    }
   </script>
 
 </body>
