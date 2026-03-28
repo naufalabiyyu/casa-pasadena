@@ -423,6 +423,34 @@
       50% { opacity: 0.3; }
     }
 
+    .tour-fullscreen-btn {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 3;
+      width: 44px;
+      height: 44px;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201,169,110,0.3);
+      color: var(--gold);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .tour-fullscreen-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .tour-fullscreen-btn:hover {
+      background: rgba(201,169,110,0.2);
+      border-color: var(--gold);
+    }
+
     .tour-controls {
       display: flex;
       justify-content: center;
@@ -732,7 +760,7 @@
         360° Live
       </div>
       <div class="tour-frame-wrapper">
-        <iframe 
+        <iframe
           src="https://pantaiindahkapuk.github.io/360CasaPasadena/"
           allowfullscreen
           webkitallowfullscreen
@@ -742,6 +770,11 @@
           style="touch-action: none;"
         ></iframe>
       </div>
+      <button class="tour-fullscreen-btn" onclick="toggleTourFullscreen()" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+        </svg>
+      </button>
     </div>
 
     <div class="tour-controls reveal">
@@ -833,6 +866,18 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Fullscreen toggle for tour
+    function toggleTourFullscreen() {
+      const container = document.querySelector('.tour-container');
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (container.requestFullscreen) container.requestFullscreen();
+        else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+    }
   </script>
 
 </body>
